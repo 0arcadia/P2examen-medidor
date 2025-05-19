@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Lecturas de Medidores</string>
+    <string name="title_add_reading">Registro Medidor</string>
+    <string name="label_meter_type">Medidor de:</string>
+    <string name="hint_meter_number">Número de medidor</string>
+    <string name="hint_value">Valor (CLP)</string>
+    <string name="btn_save">Registrar medición</string>
+    <string name="btn_new_reading">Nueva Medición</string>
+    <string name="unit_water">m³</string>
+    <string name="unit_light">kWh</string>
+    <string name="unit_gas">m³</string>
+</resources>
