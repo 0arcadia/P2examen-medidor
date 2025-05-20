@@ -44,7 +44,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-// NUEVO: Theme wrapper para el Preview
 @Composable
 fun AppMedidoresTheme(content: @Composable () -> Unit) {
     MaterialTheme {
@@ -54,7 +53,6 @@ fun AppMedidoresTheme(content: @Composable () -> Unit) {
     }
 }
 
-// NUEVO: Preview agregado
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
@@ -69,7 +67,6 @@ fun AppMedidoresPreview() {
 fun AppMedidores() {
     val context = LocalContext.current
 
-    // 1. Inicialización de Room con remember
     val db = remember {
         Room.databaseBuilder(
             context,
@@ -78,10 +75,8 @@ fun AppMedidores() {
         ).build()
     }
 
-    // 2. Obtención del repositorio
     val repository = remember { MedicionRepository.getInstance(db.medicionDao()) }
 
-    // 3. Creación del ViewModel usando la factory
     val viewModel: MedicionViewModel = viewModel(
         factory = object : androidx.lifecycle.ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
@@ -91,7 +86,6 @@ fun AppMedidores() {
         }
     )
 
-    // 4. Inserción de datos de prueba (solo una vez)
     LaunchedEffect(Unit) {
         launch(Dispatchers.IO) {
             if (repository.mediciones.value.isEmpty()) {
@@ -116,13 +110,11 @@ fun AppMedidores() {
         }
     }
 
-    // 5. Estructura principal de la UI
     AppMedidoresTheme {
         NavGraph(viewModel = viewModel)
     }
 }
 
-// NUEVO: Composable para mostrar los íconos en el Preview
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
@@ -134,7 +126,6 @@ fun IconosPreview() {
     }
 }
 
-// NUEVO: Función de íconos mejorada
 @Composable
 fun IconoMedicion(medicion: Medicion) {
     when(medicion.tipo) {
